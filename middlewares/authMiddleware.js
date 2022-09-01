@@ -11,7 +11,7 @@ exports.isAuthenticated = async (req,res,next) =>{
             })
         }
         const decoded = jwt.verify(token,process.env.JWT_SECRET);
-        req.userWallet = decoded;
+        req.userWallet = decoded
         next();
 
    } catch (error) {
