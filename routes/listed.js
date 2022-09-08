@@ -53,3 +53,13 @@ router.put("/update/:token_Id", isAuthenticated, async (req, res) => {
       res.status(500).json(error);
     }
   });
+
+  router.get("/:slug", isAuthenticated, async (req, res) => {
+    try {
+        const slug = req.params.slug;
+        const list = await Listed.findOne({Slug:slug});
+        res.status(200).json(list);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+  });
