@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const cookiesParser = require("cookie-parser");
 const attributeRouter = require('./routes/attribute.js');
 const authRouter = require('./routes/login');
+const listedRouter = require('./routes/listed');
 
 dotenv.config()
 const app = express();
@@ -33,5 +34,6 @@ console.log("DB:", db);
 
 app.use("/api/v1/attribute", attributeRouter);
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/list", listedRouter);
 
 app.listen("8000", () => console.log("Boom!"));
