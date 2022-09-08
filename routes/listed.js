@@ -9,8 +9,8 @@ router.post("/create", isAuthenticated, async (req, res) => {
     const listed = new Listed({
       address: req.body.address,
       token_Id: req.body.token_Id,
-      Name: req.body.Name,
-      Slug: req.body.Slug,
+      name: req.body.Name,
+      slug: req.body.Slug,
       isListed: req.body.isListed,
       price: req.body.price,
     });
