@@ -29,8 +29,8 @@ mongoose
     console.error("App starting error:", err.message);
     process.exit(1);
   });
-var db = mongoose.connection;
-console.log("DB:", db);
+// var db = mongoose.connection;
+// console.log("DB:", db);
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/attribute", attributeRouter);

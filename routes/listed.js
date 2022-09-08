@@ -58,3 +58,5 @@ router.get("/:slug", isAuthenticated, async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+module.exports = router;
