@@ -1,14 +1,12 @@
 const router = require("express").Router();
-
 const Attribute = require("../models/Attribute");
-
-const {isAuthenticated} = require('../middlewares/authMiddleware')
+const { isAuthenticated } = require("../middlewares/authMiddleware");
 
 router.get("/", isAuthenticated, (req, res) => {
-  res.send({message:req.userWallet}); //req.userWallet will return the user wallet address from the current session jwt
+  res.send({ message: req.userWallet }); //req.userWallet will return the user wallet address from the current session jwt
 });
 
-router.get("/get/:tokenId",isAuthenticated, async (req, res) => {
+router.get("/get/:tokenId", isAuthenticated, async (req, res) => {
   try {
     const _record = await Attribute.findOne({ tokenId: req.params.tokenId });
     res.status(200).json(_record);
@@ -41,7 +39,7 @@ router.post("/create", isAuthenticated, async (req, res) => {
   }
 });
 
-router.put("/update/:tokenId",isAuthenticated, async (req, res) => {
+router.put("/update/:tokenId", isAuthenticated, async (req, res) => {
   try {
     const _attribute = await Attribute.findOne({ tokenId: req.params.tokenId });
     if (_attribute) {

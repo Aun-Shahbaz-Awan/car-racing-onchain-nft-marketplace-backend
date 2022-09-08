@@ -1,17 +1,17 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const dotenv = require('dotenv');
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const dotenv = require("dotenv");
 const cookiesParser = require("cookie-parser");
-const attributeRouter = require('./routes/attribute.js');
-const authRouter = require('./routes/login');
-const listedRouter = require('./routes/listed');
+const attributeRouter = require("./routes/attribute.js");
+const authRouter = require("./routes/login");
+const listedRouter = require("./routes/listed");
 
-dotenv.config()
+dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(cookiesParser())
+app.use(cookiesParser());
 
 // DB connection
 var MONGODB_URL = process.env.MONGODB_URL;
@@ -32,8 +32,8 @@ mongoose
 var db = mongoose.connection;
 console.log("DB:", db);
 
-app.use("/api/v1/attribute", attributeRouter);
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/attribute", attributeRouter);
 app.use("/api/v1/list", listedRouter);
 
 app.listen("8000", () => console.log("Boom!"));

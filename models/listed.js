@@ -11,11 +11,11 @@ const ListedSchema = new mongoose.Schema(
         type:Number,
         required:true
     },
-    Name:{
+    name:{
         type:String,
         required:true,
     },
-    Slug:{
+    slug:{
         type:String,
         required:true
     },
