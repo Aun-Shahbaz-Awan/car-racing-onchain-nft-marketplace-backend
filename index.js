@@ -2,12 +2,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const cookiesParser = require("cookie-parser");
 const attributeRouter = require('./routes/attribute.js');
+const authRouter = require('./routes/login');
 
 dotenv.config()
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(cookiesParser())
 
 // DB connection
 var MONGODB_URL = process.env.MONGODB_URL;
@@ -29,5 +32,6 @@ var db = mongoose.connection;
 console.log("DB:", db);
 
 app.use("/api/v1/attribute", attributeRouter);
+app.use("/api/v1/auth", authRouter);
 
-app.listen(() => console.log("Boom!"));
+app.listen("8000", () => console.log("Boom!"));
