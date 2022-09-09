@@ -4,13 +4,14 @@ const Listed = require("../models/Listed");
 
 const { isAuthenticated } = require("../middlewares/authMiddleware");
 
-router.post("/create", isAuthenticated, async (req, res) => {
+// router.post("/create", isAuthenticated, async (req, res) => {
+router.post("/create", async (req, res) => {
   try {
     const listed = new Listed({
       address: req.body.address,
       token_Id: req.body.token_Id,
-      name: req.body.Name,
-      slug: req.body.Slug,
+      name: req.body.name,
+      slug: req.body.slug,
       isListed: req.body.isListed,
       price: req.body.price,
     });
@@ -49,10 +50,11 @@ router.put("/update/:token_Id", isAuthenticated, async (req, res) => {
   }
 });
 
-router.get("/:slug", isAuthenticated, async (req, res) => {
+// router.get("/:slug", isAuthenticated, async (req, res) => {
+router.get("/:slug", async (req, res) => {
   try {
     const slug = req.params.slug;
-    const list = await Listed.findOne({ Slug: slug });
+    const list = await Listed.findOne({ slug: slug });
     res.status(200).json(list);
   } catch (error) {
     res.status(500).json(error);
