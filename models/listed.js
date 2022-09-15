@@ -2,29 +2,33 @@ const mongoose = require("mongoose");
 
 const ListedSchema = new mongoose.Schema(
   {
-    address: {
+    owner_address: {
       type: String,
       required: true,
     },
-    token_Id: {
+    token_address: {
+      type: String,
+      required: true,
+    },
+    token_id: {
       type: Number,
       required: true,
       unique: true,
     },
-    name: {
-      type: String,
-      required: true,
-    },
-    slug: {
-      type: String,
+    price: {
+      type: Number,
       required: true,
     },
     isListed: {
       type: Boolean,
       default: false,
     },
-    price: {
-      type: Number,
+    slug: {
+      type: String,
+      required: true,
+    },
+    metadata: {
+      type: Object,
       required: true,
     },
   },

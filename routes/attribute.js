@@ -6,7 +6,8 @@ router.get("/", isAuthenticated, (req, res) => {
   res.send({ message: req.userWallet }); //req.userWallet will return the user wallet address from the current session jwt
 });
 
-router.get("/get/:tokenId", isAuthenticated, async (req, res) => {
+// router.get("/get/:tokenId", isAuthenticated, async (req, res) => {
+router.get("/get/:tokenId", async (req, res) => {
   try {
     const _record = await Attribute.findOne({ tokenId: req.params.tokenId });
     res.status(200).json(_record);
