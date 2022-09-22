@@ -18,7 +18,22 @@ router.post("/create", isAuthenticated, async (req, res) => {
       price: req.body.price,
     });
     if (isExist) {
-      res.status(401).json({ message: "Token Id Already Exists" });
+      // res.status(401).json({ message: "Token Id Already Exists" });
+      await Listed.findByIdAndUpdate(
+        { _id: isExist._id },
+        {
+          $set: {
+            owner_address: req.body.owner_address,
+            token_address: req.body.token_address,
+            token_id: req.body.token_id,
+            slug: req.body.slug,
+            metadata: req.body.metadata,
+            isListed: req.body.isListed,
+            price: req.body.price,
+          },
+        }
+      );
+      res.status(200).json({ message: "Updated Successfully" });
     } else {
       await listed.save();
       res.status(200).json({ message: "Created Successfully" });
@@ -62,7 +77,7 @@ router.put(
       const wallet = req.userWallet;
       const isListed = await Listed.find({ owner_address: wallet });
 
-      if (isListed.length) {
+      if (isListed) {
         const isExist = isListed.find(
           (record) => record.token_id == req.params.token_id
         );
