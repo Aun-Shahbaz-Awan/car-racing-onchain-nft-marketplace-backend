@@ -46,14 +46,17 @@ router.post("/create", isAuthenticated, async (req, res) => {
 router.get("/get-listed-name", async function (req, res) {
   try {
     let _listed = [];
-    if (await Listed.findOne({ slug: "cyclone-gt" }))
-      _listed.push("cyclone-gt");
     if (await Listed.findOne({ slug: "class-t" })) _listed.push("class-t");
-    if (await Listed.findOne({ slug: "amg-gt" })) _listed.push("amg-gt");
+    if (await Listed.findOne({ slug: "amg-63" })) _listed.push("amg-63");
     if (await Listed.findOne({ slug: "f11" })) _listed.push("f11");
-    if (await Listed.findOne({ slug: "fantom" })) _listed.push("fantom");
-    if (await Listed.findOne({ slug: "jaguar-c-type" }))
-      _listed.push("jaguar-c-type");
+    if (await Listed.findOne({ slug: "honda-nsx" })) _listed.push("honda-nsx");
+    if (await Listed.findOne({ slug: "phontom" })) _listed.push("phontom");
+    if (await Listed.findOne({ slug: "jaguar-f-type" }))
+      _listed.push("jaguar-f-type");
+    if (await Listed.findOne({ slug: "continental_gt" }))
+      _listed.push("continental_gt");
+    if (await Listed.findOne({ slug: "mustang-gt" }))
+      _listed.push("mustang-gt");
     res.status(200).json(_listed);
   } catch (error) {
     res.status(500).json(error);
